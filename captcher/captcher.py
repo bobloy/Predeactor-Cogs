@@ -206,9 +206,7 @@ class Captcher(Core):
                     "send_messages",
                     "manage_roles",
                 ]
-                result = self._permissions_checker(
-                    needed_permissions, fetched_channel
-                )
+                result = self._permissions_checker(needed_permissions, fetched_channel)
                 if not isinstance(result, str):
                     if await self.data.guild(ctx.guild).temprole():
                         await self.data.guild(ctx.guild).active.set(true_or_false)

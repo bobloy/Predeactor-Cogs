@@ -206,11 +206,11 @@ class Captcher(Core):
                     "send_messages",
                     "manage_roles",
                 ]
-                result, answer = await self._permissions_checker(
+                result = self._permissions_checker(
                     needed_permissions, fetched_channel
                 )
-                if result:
-                    if await self.data.guild(ctx.guild).temp_role():
+                if not isinstance(result, str):
+                    if await self.data.guild(ctx.guild).temprole():
                         await self.data.guild(ctx.guild).active.set(true_or_false)
                         message = "Captcher is now {term}activate.".format(
                             term="" if true_or_false else "de"
@@ -220,7 +220,7 @@ class Captcher(Core):
                             "Cannot complete request: No temporary role are configured."
                         )
                 else:
-                    message = answer
+                    message = result
             else:
                 message = "Cannot complete request: No channel are configured."
                 if channel_id:

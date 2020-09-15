@@ -197,7 +197,7 @@ class Captcher(Core):
         Set if Captcher is activated.
         """
         if true_or_false is not None:
-            channel_id = await self.data.guild(ctx.guild).verification_channel()
+            channel_id = await self.data.guild(ctx.guild).verifchannel()
             fetched_channel = self.bot.get_channel(channel_id)
             if fetched_channel:
                 needed_permissions = [
